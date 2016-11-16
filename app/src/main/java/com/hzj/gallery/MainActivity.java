@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class MainActivity extends Activity {
 
     ArrayList<String> dataList;
-    PictureAdapter pictureAdapter;
+    SelectResultAdapter selectResultAdapter;
     GridView imgGridView;
 
     @Override
@@ -41,12 +41,12 @@ public class MainActivity extends Activity {
         imgGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                imageBrowes(position);
+                imageBrowse(position);
             }
         });
 
-        pictureAdapter = new PictureAdapter(this, dataList);
-        imgGridView.setAdapter(pictureAdapter);
+        selectResultAdapter = new SelectResultAdapter(this, dataList);
+        imgGridView.setAdapter(selectResultAdapter);
     }
 
     @Override
@@ -59,12 +59,12 @@ public class MainActivity extends Activity {
                 if (temp != null) {
                     dataList.addAll(temp);
                 }
-                pictureAdapter.notifyDataSetChanged();
+                selectResultAdapter.notifyDataSetChanged();
             }
         }
     }
 
-    protected void imageBrowes(int position) {
+    protected void imageBrowse(int position) {
         Intent intent = new Intent(this, BrowseImageActivity.class);
         // 图片url,一般从数据库中或网络中获取
         intent.putExtra(BrowseImageActivity.IMAGE_URLS, dataList);

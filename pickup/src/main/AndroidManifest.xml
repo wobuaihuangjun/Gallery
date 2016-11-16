@@ -10,7 +10,7 @@
         android:supportsRtl="true">
 
         <activity android:name=".pickup.ImgFileListActivity" />
-        <activity android:name=".pickup.ImgsActivity" />
+        <activity android:name=".pickup.PictureActivity" />
 
         <activity android:name=".browse.BrowseImageActivity" />
     </application>

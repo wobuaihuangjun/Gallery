@@ -24,7 +24,7 @@ import java.util.List;
  *
  * @author huangzj
  */
-public class ImgsAdapter extends BaseAdapter {
+public class PictureAdapter extends BaseAdapter {
 
     private Context context;
     private List<String> data;
@@ -37,8 +37,8 @@ public class ImgsAdapter extends BaseAdapter {
     // private Bitmap bitmaps[];
     private boolean[] seletedFlag;
 
-    public ImgsAdapter(Context context, List<String> data,
-                       OnItemClickClass onItemClickClass) {
+    public PictureAdapter(Context context, List<String> data,
+                          OnItemClickClass onItemClickClass) {
         this.context = context;
         this.data = data;
         this.onItemClickClass = onItemClickClass;
@@ -125,7 +125,7 @@ public class ImgsAdapter extends BaseAdapter {
         return view;
     }
 
-    class Holder {
+    private static class Holder {
         ImageView imageView;
         CheckBox checkBox;
     }
@@ -160,15 +160,15 @@ public class ImgsAdapter extends BaseAdapter {
     /**
      * 最大可选择数
      */
-    public void setmaxSize(int size) {
+    public void setMaxSize(int size) {
         maxSize = size;
     }
 
     public interface OnItemClickClass {
-        public void OnItemClick(int Position, boolean isCkeck);
+        void OnItemClick(int Position, boolean isCheck);
     }
 
-    class OnPhotoClick implements OnClickListener {
+    private class OnPhotoClick implements OnClickListener {
         int position;
         Holder holder;
 
@@ -195,8 +195,7 @@ public class ImgsAdapter extends BaseAdapter {
             }
 
             if (data != null && onItemClickClass != null) {
-                onItemClickClass.OnItemClick(position,
-                        holder.checkBox.isChecked());
+                onItemClickClass.OnItemClick(position, holder.checkBox.isChecked());
             }
         }
     }

@@ -1,20 +1,13 @@
 package com.hzj.gallery;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.hzj.pickup.ImageLoader;
-import com.hzj.pickup.LoadResourceImage;
 
 import java.util.List;
 
@@ -23,12 +16,12 @@ import java.util.List;
  *
  * @author huangzj
  */
-public class PictureAdapter extends BaseAdapter {
+public class SelectResultAdapter extends BaseAdapter {
 
     private Context context;
     private List<String> data;
 
-    public PictureAdapter(Context context, List<String> data) {
+    public SelectResultAdapter(Context context, List<String> data) {
         this.context = context;
         this.data = data;
     }

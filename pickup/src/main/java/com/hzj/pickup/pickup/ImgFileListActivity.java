@@ -26,7 +26,7 @@ public class ImgFileListActivity extends Activity implements OnItemClickListener
     public static final String TAG = "ImgFileListActivity";
 
     public static final String MAX_SIZE = "max_size";
-    public static final int DEFAUT_MAX_SIZE = 3;
+    public static final int DEFAULT_MAX_SIZE = 3;
 
     private ListView listView;
     private TextView friendlyTip;
@@ -43,7 +43,7 @@ public class ImgFileListActivity extends Activity implements OnItemClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.feedback_imgfile_list);
-        initIalize();
+        initialize();
     }
 
     @Override
@@ -55,7 +55,7 @@ public class ImgFileListActivity extends Activity implements OnItemClickListener
         }
     }
 
-    private void initIalize() {
+    private void initialize() {
         initValue();
         initWidget();
         initData();
@@ -88,56 +88,46 @@ public class ImgFileListActivity extends Activity implements OnItemClickListener
     }
 
     private void initValue() {
-        listSize = getIntent().getIntExtra(MAX_SIZE, DEFAUT_MAX_SIZE);
+        listSize = getIntent().getIntExtra(MAX_SIZE, DEFAULT_MAX_SIZE);
         Util util = new Util(this);
         localList = util.LocalImgFileList();
-        // localList = splitLargeFolder();
+//        localList = splitLargeFolder(localList, 200);
     }
 
-    // /**
-    // * 拆分大文件夹
-    // *
-    // * @return
-    // */
-    // private List<FileTraversal> splitLargeFolder() {
-    //
-    // int maxSize = 200;// 文件夹最大容量
-    //
-    // List<FileTraversal> list = new ArrayList<FileTraversal>();
-    //
-    // for (int i = 0; i < localList.size(); i++) {
-    //
-    // FileTraversal temp = localList.get(i);
-    // String name = temp.filename;
-    // List<String> content = temp.filecontent;
-    //
-    // int size = content.size();
-    //
-    // int j = 0;
-    // while (j * maxSize < size) {
-    // FileTraversal a1 = new FileTraversal();
-    //
-    // if (j != 0) {
-    // a1.filename = name + "(" + j + ")";
-    // } else {
-    // a1.filename = name;
-    // }
-    //
-    // for (int x = 0; (x < maxSize && x + (j * maxSize) < size); x++) {
-    // a1.filecontent.add(content.get(x + (j * maxSize)));
-    // }
-    // list.add(a1);
-    // j++;
-    //
-    // }
-    //
-    // }
-    // return list;
-    // }
+    /**
+     * 拆分大文件夹
+     */
+    private List<FileTraversal> splitLargeFolder(List<FileTraversal> fileTraversals, int maxSize) {
+        List<FileTraversal> list = new ArrayList<>();
+        for (int i = 0; i < fileTraversals.size(); i++) {
+            FileTraversal temp = fileTraversals.get(i);
+            String name = temp.filename;
+            List<String> content = temp.filecontent;
+
+            int size = content.size();
+            int j = 0;
+            while (j * maxSize < size) {
+                FileTraversal a1 = new FileTraversal();
+
+                if (j != 0) {
+                    a1.filename = name + "(" + j + ")";
+                } else {
+                    a1.filename = name;
+                }
+
+                for (int x = 0; (x < maxSize && x + (j * maxSize) < size); x++) {
+                    a1.filecontent.add(content.get(x + (j * maxSize)));
+                }
+                list.add(a1);
+                j++;
+            }
+        }
+        return list;
+    }
 
     @Override
     public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-        Intent intent = new Intent(this, ImgsActivity.class);
+        Intent intent = new Intent(this, PictureActivity.class);
         Bundle bundle = new Bundle();
         bundle.putParcelable("data", localList.get(arg2));
         intent.putExtra(MAX_SIZE, listSize);

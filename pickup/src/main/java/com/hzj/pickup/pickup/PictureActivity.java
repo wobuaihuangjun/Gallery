@@ -19,12 +19,12 @@ import timber.log.Timber;
  *
  * @author huangzj
  */
-public class ImgsActivity extends Activity {
+public class PictureActivity extends Activity {
 
-    private static final String TAG = "ImgsActivity";
+    private static final String TAG = "PictureActivity";
 
     private FileTraversal fileTraversal;
-    private ImgsAdapter imgsAdapter;
+    private PictureAdapter pictureAdapter;
     private ArrayList<String> fileList;
 
     private TextView sureTv;
@@ -39,7 +39,7 @@ public class ImgsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.feedback_photo_grally);
 
-        listSize = getIntent().getIntExtra(ImgFileListActivity.MAX_SIZE, ImgFileListActivity.DEFAUT_MAX_SIZE);
+        listSize = getIntent().getIntExtra(ImgFileListActivity.MAX_SIZE, ImgFileListActivity.DEFAULT_MAX_SIZE);
 
         GridView imgGridView = (GridView) findViewById(R.id.gridView1);
 
@@ -53,10 +53,10 @@ public class ImgsActivity extends Activity {
 
         Bundle bundle = getIntent().getExtras();
         fileTraversal = bundle.getParcelable("data");
-        imgsAdapter = new ImgsAdapter(this, fileTraversal.filecontent,
+        pictureAdapter = new PictureAdapter(this, fileTraversal.filecontent,
                 onItemClickClass);
-        imgsAdapter.setmaxSize(listSize);
-        imgGridView.setAdapter(imgsAdapter);
+        pictureAdapter.setMaxSize(listSize);
+        imgGridView.setAdapter(pictureAdapter);
         fileList = new ArrayList<>();
     }
 
@@ -67,7 +67,7 @@ public class ImgsActivity extends Activity {
         super.onDestroy();
     }
 
-    ImgsAdapter.OnItemClickClass onItemClickClass = new ImgsAdapter.OnItemClickClass() {
+    PictureAdapter.OnItemClickClass onItemClickClass = new PictureAdapter.OnItemClickClass() {
         @Override
         public void OnItemClick(int Position, boolean isCheck) {
             String filePath = fileTraversal.filecontent.get(Position);
@@ -83,7 +83,7 @@ public class ImgsActivity extends Activity {
                     e.printStackTrace();
                 }
             }
-            imgsAdapter.setSelectedSize(fileList.size());
+            pictureAdapter.setSelectedSize(fileList.size());
         }
     };
 
