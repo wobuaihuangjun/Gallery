@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#000000">
+
+    <com.hzj.pickup.browse.GalleryViewPager
+        android:id="@+id/viewer"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/image_count" />
+
+    <TextView
+        android:id="@+id/image_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:padding="8dp"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+</RelativeLayout>

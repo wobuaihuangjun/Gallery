@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#EFEFEF"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/land_navigation" >
+
+        <TextView
+            android:id="@+id/msg_record_title"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="选择图片"
+            android:textColor="#555555"
+            android:textSize="22sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/friendly_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="您的相册还没有照片！"
+        android:textColor="#888888"
+        android:textSize="18sp" />
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/top_layout" >
+    </ListView>
+
+</RelativeLayout>
