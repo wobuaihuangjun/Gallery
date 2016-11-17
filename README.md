@@ -4,6 +4,8 @@
 
 效果如下：
 
-![image](https://github.com/wobuaihuangjun/Gallery/blob/master/doc/picture_folder.jpg)
-![image](https://github.com/wobuaihuangjun/Gallery/blob/master/doc/gallery.jpg)
-![image](https://github.com/wobuaihuangjun/Gallery/blob/master/doc/browse.jpg)
+文件列表![image](https://github.com/wobuaihuangjun/Gallery/blob/master/doc/picture_folder.jpg)
+
+文件夹图片浏览![image](https://github.com/wobuaihuangjun/Gallery/blob/master/doc/gallery.jpg)
+
+大图浏览![image](https://github.com/wobuaihuangjun/Gallery/blob/master/doc/browse.jpg)
