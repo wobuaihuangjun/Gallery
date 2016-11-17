@@ -1,4 +1,4 @@
-package com.hzj.gallery;
+package com.hzj.demo.gallery;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.hzj.gallery", appContext.getPackageName());
+        assertEquals("com.hzj.demo.gallery", appContext.getPackageName());
     }
 }

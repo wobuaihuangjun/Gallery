@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.hzj.gallery.MainActivity">
+    tools:context="com.hzj.demo.gallery.MainActivity">
 
     <Button
         android:id="@+id/all_picture"

@@ -1,4 +1,4 @@
-package com.hzj.gallery;
+package com.hzj.demo.gallery;
 
 import android.app.Application;
 
