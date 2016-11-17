@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import timber.log.Timber;
 
 /**
- * 系统图片多选界面
+ * picture select gallery
  *
  * @author huangzj
  */

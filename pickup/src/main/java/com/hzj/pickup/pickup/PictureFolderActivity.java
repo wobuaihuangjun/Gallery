@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * 本地图片文件夹列表界面
+ * picture folder browse
  *
  * @author huangzj
  */
@@ -92,13 +92,13 @@ public class PictureFolderActivity extends Activity implements OnItemClickListen
 
     private void initValue() {
         listSize = getIntent().getIntExtra(MAX_SIZE, DEFAULT_MAX_SIZE);
-        Util util = new Util(this);
-        localList = util.LocalImgFileList();
+        PicturePickUp picturePickUp = new PicturePickUp(this);
+        localList = picturePickUp.LocalImgFileList();
 //        localList = splitLargeFolder(localList, 200);
     }
 
     /**
-     * 拆分大文件夹
+     * split large folder
      */
     private List<FileTraversal> splitLargeFolder(List<FileTraversal> fileTraversals, int maxSize) {
         List<FileTraversal> list = new ArrayList<>();

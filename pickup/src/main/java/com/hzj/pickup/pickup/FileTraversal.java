@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 文件类
+ * picture folder
  *
  * @author huangzj
  */
 @SuppressLint("ParcelCreator")
 public class FileTraversal implements Parcelable {
 
-    public String fileName;//所属图片的文件名称
+    public String fileName;//folder name
     public ArrayList<String> fileContent = new ArrayList<>();
 
     @Override

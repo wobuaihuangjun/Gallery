@@ -13,20 +13,20 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * 本地图片文件工具类
+ * picture pick up util
  *
  * @author huangzj
  */
-public class Util {
+public class PicturePickUp {
 
     private Context context;
 
-    public Util(Context context) {
+    public PicturePickUp(Context context) {
         this.context = context;
     }
 
     /**
-     * 获取全部图片地址
+     * get all picture path
      */
     private ArrayList<String> listAllDir() {
         Intent intent = new Intent(Intent.ACTION_PICK,
@@ -55,9 +55,7 @@ public class Util {
     }
 
     /**
-     * 获取本地图片文件夹列表
-     *
-     * @return
+     * get all picture folder
      */
     public List<FileTraversal> LocalImgFileList() {
         List<FileTraversal> data = new ArrayList<>();
@@ -95,7 +93,7 @@ public class Util {
     }
 
     /**
-     * 获取文件夹的信息
+     * get folder info
      *
      * @param data
      * @return

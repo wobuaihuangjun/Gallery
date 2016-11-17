@@ -19,7 +19,7 @@ import com.hzj.pickup.R;
 import java.util.ArrayList;
 
 /**
- * 本地图库多选数据适配器
+ * picture gallery adpter
  *
  * @author huangzj
  */

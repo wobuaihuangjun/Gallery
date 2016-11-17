@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * 本地图片文件夹列表适配器
+ * picture folder browse adapter
  *
  * @author huangzj
  */

@@ -407,7 +407,7 @@ public class ImageLoader {
 
         int degree = BitmapUtil.getExifOrientation(pathName);
         if (degree != 0) {
-            bitmap = BitmapUtil.rotaingImageView(degree, bitmap);
+            bitmap = BitmapUtil.rotateBitmap(degree, bitmap);
         }
         return bitmap;
     }

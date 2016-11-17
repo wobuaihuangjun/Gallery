@@ -22,7 +22,7 @@ import java.io.IOException;
 import timber.log.Timber;
 
 /**
- * 图片工具类
+ * bitmap util
  *
  * @author huangzj
  */
@@ -241,35 +241,28 @@ public class BitmapUtil {
         }
     }
 
-    public static Bitmap scaleDownBitmap(Bitmap img, int newHeight,
-                                         Context context) {
-
+    public static Bitmap scaleDownBitmap(Bitmap img, int newHeight, Context context) {
         final float densityMultiplier = context.getResources()
                 .getDisplayMetrics().density;
 
         int h = (int) (newHeight * densityMultiplier);
         int w = (int) (h * img.getWidth() / ((double) img.getHeight()));
 
-        img = Bitmap.createScaledBitmap(img, w, h, true);
-
-        return img;
+        return Bitmap.createScaledBitmap(img, w, h, true);
     }
 
     /**
-     * 生成圆形图片
+     * Generate circular images
      *
-     * @param bitmap
-     * @param width
-     * @param height
-     * @return
+     * @param bitmap original images
+     * @param width  The width of circular images
+     * @param height The height of circular images
+     * @return circular images
      */
     public static Bitmap toRoundBitmap(Bitmap bitmap, int width, int height) {
-
         if (bitmap == null || bitmap.isRecycled()) {
             return null;
         }
-        // int width = bitmap.getWidth();
-        // int height = bitmap.getHeight();
 
         int r = 0;
 
@@ -279,8 +272,7 @@ public class BitmapUtil {
             r = width;
         }
 
-        Bitmap backgroundBmp = Bitmap.createBitmap(width, height,
-                Config.ARGB_8888);
+        Bitmap backgroundBmp = Bitmap.createBitmap(width, height, Config.ARGB_8888);
 
         Canvas canvas = new Canvas(backgroundBmp);
         Paint paint = new Paint();
@@ -299,10 +291,10 @@ public class BitmapUtil {
     }
 
     /**
-     * 获取图片旋转角度
+     * For image rotation Angle
      *
-     * @param filepath
-     * @return
+     * @param filepath image path
+     * @return rotation Angle
      */
     public static int getExifOrientation(String filepath) {
         int degree = 0;
@@ -333,19 +325,17 @@ public class BitmapUtil {
     }
 
     /**
-     * 旋转图片
+     * rotate bitmap
      *
-     * @param angle
-     * @param bitmap
-     * @return
+     * @param angle  rotate angle
+     * @param bitmap bitmap
+     * @return a new bitmap
      */
-    public static Bitmap rotaingImageView(int angle, Bitmap bitmap) {
-        // 旋转图片 动作
+    public static Bitmap rotateBitmap(int angle, Bitmap bitmap) {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
-        // 创建新的图片
-        Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0,
+        // create new bitmap
+        return Bitmap.createBitmap(bitmap, 0, 0,
                 bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-        return resizedBitmap;
     }
 }

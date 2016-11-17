@@ -3,11 +3,19 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_margin="4dp"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop" />
+
     <RelativeLayout
 
         android:id="@+id/picture_gallery_select_layout"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
         android:layout_alignRight="@+id/imageView1"
         android:layout_alignTop="@+id/imageView1">
 
@@ -15,7 +23,6 @@
             android:id="@+id/checkBox1"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignParentRight="true"
             android:layout_marginRight="3dp"
             android:layout_marginTop="3dp"
             android:checked="false"
@@ -23,15 +30,6 @@
             android:focusable="false" />
 
     </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:contentDescription="@null"
-        android:scaleType="centerCrop"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
