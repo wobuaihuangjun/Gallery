@@ -1,4 +1,4 @@
-package com.hzj.pickup.browse;
+package com.hzj.gallery.browse;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

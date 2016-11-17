@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.hzj.pickup.ImageLoader;
-
 import java.util.List;
 
 /**

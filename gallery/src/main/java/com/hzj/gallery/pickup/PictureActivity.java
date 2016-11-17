@@ -1,4 +1,4 @@
-package com.hzj.pickup.pickup;
+package com.hzj.gallery.pickup;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,9 +8,9 @@ import android.view.View.OnClickListener;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import com.hzj.pickup.ImageLoader;
-import com.hzj.pickup.R;
-import com.hzj.pickup.browse.BrowseImageActivity;
+import com.hzj.gallery.ImageLoader;
+import com.hzj.gallery.R;
+import com.hzj.gallery.browse.BrowseImageActivity;
 
 import java.util.ArrayList;
 

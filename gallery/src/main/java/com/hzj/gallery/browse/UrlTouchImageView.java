@@ -1,4 +1,4 @@
-package com.hzj.pickup.browse;
+package com.hzj.gallery.browse;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,8 +7,8 @@ import android.util.AttributeSet;
 import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
 
-import com.hzj.pickup.ImageLoader;
-import com.hzj.pickup.R;
+import com.hzj.gallery.ImageLoader;
+import com.hzj.gallery.R;
 
 
 /**

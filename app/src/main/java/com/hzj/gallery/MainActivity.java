@@ -8,9 +8,9 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 
-import com.hzj.pickup.browse.BrowseImageActivity;
-import com.hzj.pickup.pickup.PictureFolderActivity;
-import com.hzj.pickup.pickup.PictureActivity;
+import com.hzj.gallery.browse.BrowseImageActivity;
+import com.hzj.gallery.pickup.PictureFolderActivity;
+import com.hzj.gallery.pickup.PictureActivity;
 
 import java.util.ArrayList;
 

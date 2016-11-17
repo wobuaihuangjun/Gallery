@@ -1,4 +1,4 @@
-package com.hzj.pickup;
+package com.hzj.gallery;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

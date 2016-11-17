@@ -1,4 +1,4 @@
-package com.hzj.pickup.pickup;
+package com.hzj.gallery.pickup;
 
 import android.content.Context;
 import android.content.Intent;

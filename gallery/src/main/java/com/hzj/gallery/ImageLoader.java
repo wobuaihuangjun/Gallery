@@ -1,4 +1,4 @@
-package com.hzj.pickup;
+package com.hzj.gallery;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

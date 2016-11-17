@@ -1,4 +1,4 @@
-package com.hzj.pickup.pickup;
+package com.hzj.gallery.pickup;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,8 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hzj.pickup.ImageLoader;
-import com.hzj.pickup.R;
+import com.hzj.gallery.ImageLoader;
+import com.hzj.gallery.R;
 
 import java.util.HashMap;
 import java.util.List;

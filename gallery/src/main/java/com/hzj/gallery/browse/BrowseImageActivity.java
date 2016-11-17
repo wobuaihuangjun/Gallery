@@ -1,4 +1,4 @@
-package com.hzj.pickup.browse;
+package com.hzj.gallery.browse;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.TextView;
 
-import com.hzj.pickup.R;
+import com.hzj.gallery.R;
 
 import java.util.ArrayList;
 
