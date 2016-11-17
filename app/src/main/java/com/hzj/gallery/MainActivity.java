@@ -9,7 +9,8 @@ import android.widget.Button;
 import android.widget.GridView;
 
 import com.hzj.pickup.browse.BrowseImageActivity;
-import com.hzj.pickup.pickup.ImgFileListActivity;
+import com.hzj.pickup.pickup.PictureFolderActivity;
+import com.hzj.pickup.pickup.PictureActivity;
 
 import java.util.ArrayList;
 
@@ -29,8 +30,8 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra(ImgFileListActivity.MAX_SIZE, 3);
-                intent.setClass(MainActivity.this, ImgFileListActivity.class);
+                intent.putExtra(PictureFolderActivity.MAX_SIZE, 3);
+                intent.setClass(MainActivity.this, PictureFolderActivity.class);
                 startActivityForResult(intent, 100);
             }
         });
@@ -53,9 +54,8 @@ public class MainActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK && requestCode == 100) {
             Bundle bundle = data.getExtras();
-            if (bundle != null
-                    && bundle.getStringArrayList("files") != null) {
-                ArrayList<String> temp = bundle.getStringArrayList("files");
+            if (bundle != null) {
+                ArrayList<String> temp = bundle.getStringArrayList(PictureActivity.SELECT_PICTURE_PATH);
                 if (temp != null) {
                     dataList.addAll(temp);
                 }

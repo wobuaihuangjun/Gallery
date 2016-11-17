@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
 
-        <activity android:name=".pickup.ImgFileListActivity" />
+        <activity android:name=".pickup.PictureFolderActivity" />
         <activity android:name=".pickup.PictureActivity" />
 
         <activity android:name=".browse.BrowseImageActivity" />

@@ -392,8 +392,7 @@ public class ImageLoader {
      * @param reqHeight
      * @return
      */
-    private Bitmap decodeSampledBitmapFromFile(String pathName, int reqWidth,
-                                               int reqHeight) {
+    private Bitmap decodeSampledBitmapFromFile(String pathName, int reqWidth, int reqHeight) {
         // 第一次解析将inJustDecodeBounds设置为true，来获取图片大小
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
@@ -421,19 +420,16 @@ public class ImageLoader {
      * @param reqHeight
      * @return
      */
-    private int calculateInSampleSize(BitmapFactory.Options options,
-                                      int reqWidth, int reqHeight) {
-
+    private int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
         int inSampleSize = 1;
 
         int tmpWidth = options.outWidth;
-        int tmpheight = options.outHeight;
+        int tmpHeight = options.outHeight;
         int i = 0;
         while (true) {
-
             tmpWidth = tmpWidth >> i;
-            tmpheight = tmpheight >> i;
-            if ((tmpWidth <= reqWidth) && (tmpheight <= reqHeight)) {
+            tmpHeight = tmpHeight >> i;
+            if ((tmpWidth <= reqWidth) && (tmpHeight <= reqHeight)) {
                 // 计算缩放比例=2的i次方
                 inSampleSize = (int) Math.pow(2.0D, i);
                 break;
@@ -451,8 +447,7 @@ public class ImageLoader {
      */
     private ImageSize getImageViewWidth(ImageView imageView) {
         ImageSize imageSize = new ImageSize();
-        DisplayMetrics displayMetrics = imageView.getContext().getResources()
-                .getDisplayMetrics();
+        DisplayMetrics displayMetrics = imageView.getContext().getResources().getDisplayMetrics();
 
         LayoutParams lp = imageView.getLayoutParams();
 
@@ -491,7 +486,6 @@ public class ImageLoader {
         // }
 
         return imageSize;
-
     }
 
     /**
@@ -512,6 +506,7 @@ public class ImageLoader {
                 Timber.e("控件宽或高的最大值=" + value);
             }
         } catch (Exception e) {
+            Timber.e("getImageViewFieldValue" + e.toString());
         }
         return value;
     }

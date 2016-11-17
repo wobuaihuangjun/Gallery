@@ -9,6 +9,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.hzj.pickup.R;
+import com.hzj.pickup.browse.BrowseImageActivity;
 
 import java.util.ArrayList;
 
@@ -21,13 +22,18 @@ import timber.log.Timber;
  */
 public class PictureActivity extends Activity {
 
-    private static final String TAG = "PictureActivity";
+    public static final String TAG = "PictureActivity";
+
+    public static final String SELECT_PICTURE_PATH = "select_picture_path";
 
     private FileTraversal fileTraversal;
     private PictureAdapter pictureAdapter;
-    private ArrayList<String> fileList;
+
+    private ArrayList<String> picturePath;
+    private ArrayList<String> selectPictureList;
 
     private TextView sureTv;
+    private GridView imgGridView;
 
     /**
      * 可选择数量
@@ -37,11 +43,18 @@ public class PictureActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.feedback_photo_grally);
+        setContentView(R.layout.activity_picture_grally);
 
-        listSize = getIntent().getIntExtra(ImgFileListActivity.MAX_SIZE, ImgFileListActivity.DEFAULT_MAX_SIZE);
+        initialize();
+    }
 
-        GridView imgGridView = (GridView) findViewById(R.id.gridView1);
+    private void initialize() {
+        initWidget();
+        initData();
+    }
+
+    private void initWidget() {
+        imgGridView = (GridView) findViewById(R.id.gridView1);
 
         sureTv = (TextView) findViewById(R.id.sure);
         sureTv.setOnClickListener(new OnClickListener() {
@@ -50,14 +63,21 @@ public class PictureActivity extends Activity {
                 sendFiles();
             }
         });
+    }
 
+    private void initData() {
         Bundle bundle = getIntent().getExtras();
-        fileTraversal = bundle.getParcelable("data");
-        pictureAdapter = new PictureAdapter(this, fileTraversal.filecontent,
-                onItemClickClass);
+        listSize = getIntent().getIntExtra(PictureFolderActivity.MAX_SIZE, PictureFolderActivity.DEFAULT_MAX_SIZE);
+        fileTraversal = bundle.getParcelable(PictureFolderActivity.FOLDER_PICTURE_PATH);
+        if (fileTraversal != null) {
+            picturePath = fileTraversal.fileContent;
+        } else {
+            picturePath = new ArrayList<>();
+        }
+        pictureAdapter = new PictureAdapter(this, picturePath, onItemClickListener);
         pictureAdapter.setMaxSize(listSize);
         imgGridView.setAdapter(pictureAdapter);
-        fileList = new ArrayList<>();
+        selectPictureList = new ArrayList<>();
     }
 
     @Override
@@ -67,25 +87,39 @@ public class PictureActivity extends Activity {
         super.onDestroy();
     }
 
-    PictureAdapter.OnItemClickClass onItemClickClass = new PictureAdapter.OnItemClickClass() {
+    PictureAdapter.OnItemClickListener onItemClickListener = new PictureAdapter.OnItemClickListener() {
         @Override
-        public void OnItemClick(int Position, boolean isCheck) {
-            String filePath = fileTraversal.filecontent.get(Position);
+        public void OnItemCheckedChanged(int Position, boolean isCheck) {
+            String filePath = fileTraversal.fileContent.get(Position);
             if (!isCheck) {
-                fileList.remove(filePath);
-                sureTv.setText("确定(" + fileList.size() + "/" + listSize + ")");
-            } else {
-                try {
-                    Timber.i("img choise position->" + Position);
-                    fileList.add(filePath);
-                    sureTv.setText("确定(" + fileList.size() + "/" + listSize + ")");
-                } catch (Exception e) {
-                    e.printStackTrace();
+                selectPictureList.remove(filePath);
+                int size = selectPictureList.size();
+                if (size > 0) {
+                    sureTv.setText("Sure(" + size + "/" + listSize + ")");
+                } else {
+                    sureTv.setText("Sure");
                 }
+            } else {
+                Timber.i("img select position->" + Position);
+                selectPictureList.add(filePath);
+                sureTv.setText("Sure(" + selectPictureList.size() + "/" + listSize + ")");
             }
-            pictureAdapter.setSelectedSize(fileList.size());
+            pictureAdapter.setSelectedSize(selectPictureList.size());
+        }
+
+        @Override
+        public void onItemClick(int position) {
+            imageBrowse(position);
         }
     };
+
+    protected void imageBrowse(int position) {
+        Intent intent = new Intent(this, BrowseImageActivity.class);
+        // 图片url,一般从数据库中或网络中获取
+        intent.putExtra(BrowseImageActivity.IMAGE_URLS, picturePath);
+        intent.putExtra(BrowseImageActivity.IMAGE_INDEX, position);
+        startActivityForResult(intent, 100);
+    }
 
     /**
      * FIXME 只需要在这个方法把选中的文档目录以list的形式传过去即可
@@ -93,10 +127,22 @@ public class PictureActivity extends Activity {
     public void sendFiles() {
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
-        bundle.putStringArrayList("files", fileList);
+        bundle.putStringArrayList(SELECT_PICTURE_PATH, selectPictureList);
         intent.putExtras(bundle);
         setResult(RESULT_OK, intent);
         finish();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (RESULT_OK == resultCode && requestCode == 100) {
+            Bundle bundle = data.getExtras();
+            if (bundle != null) {
+                int selectPosition = bundle.getInt(BrowseImageActivity.CURRENT_POSITION);
+                imgGridView.setSelection(selectPosition);
+            }
+        }
+    }
 }

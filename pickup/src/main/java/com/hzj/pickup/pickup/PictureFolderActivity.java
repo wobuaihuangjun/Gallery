@@ -21,17 +21,19 @@ import java.util.List;
  *
  * @author huangzj
  */
-public class ImgFileListActivity extends Activity implements OnItemClickListener {
+public class PictureFolderActivity extends Activity implements OnItemClickListener {
 
-    public static final String TAG = "ImgFileListActivity";
+    public static final String TAG = "PictureFolderActivity";
 
     public static final String MAX_SIZE = "max_size";
     public static final int DEFAULT_MAX_SIZE = 3;
 
+    public static final String FOLDER_PICTURE_PATH = "folder_picture_path";
+
     private ListView listView;
     private TextView friendlyTip;
 
-    private ImgFileListAdapter listAdapter;
+    private PictureFolderAdapter listAdapter;
     private List<FileTraversal> localList;
 
     /**
@@ -42,7 +44,8 @@ public class ImgFileListActivity extends Activity implements OnItemClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.feedback_imgfile_list);
+        setContentView(R.layout.activity_picture_folder);
+
         initialize();
     }
 
@@ -66,18 +69,18 @@ public class ImgFileListActivity extends Activity implements OnItemClickListener
         if (localList != null && localList.size() > 0) {
             for (int i = 0; i < localList.size(); i++) {
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("filecount", localList.get(i).filecontent.size() + "张");
-                map.put("imgpath",
-                        localList.get(i).filecontent.get(0) == null ? null
-                                : (localList.get(i).filecontent.get(0)));// 文件夹中的第一张图片
-                map.put("filename", localList.get(i).filename);
+                map.put(PictureFolderAdapter.FILE_COUNT, localList.get(i).fileContent.size() + "");
+                map.put(PictureFolderAdapter.PICTURE_PATH,
+                        localList.get(i).fileContent.get(0) == null ? null
+                                : (localList.get(i).fileContent.get(0)));// 文件夹中的第一张图片
+                map.put(PictureFolderAdapter.FILE_NAME, localList.get(i).fileName);
                 listData.add(map);
             }
             friendlyTip.setVisibility(View.GONE);
         } else {
             friendlyTip.setVisibility(View.VISIBLE);
         }
-        listAdapter = new ImgFileListAdapter(this, listData);
+        listAdapter = new PictureFolderAdapter(this, listData);
         listView.setAdapter(listAdapter);
     }
 
@@ -101,8 +104,8 @@ public class ImgFileListActivity extends Activity implements OnItemClickListener
         List<FileTraversal> list = new ArrayList<>();
         for (int i = 0; i < fileTraversals.size(); i++) {
             FileTraversal temp = fileTraversals.get(i);
-            String name = temp.filename;
-            List<String> content = temp.filecontent;
+            String name = temp.fileName;
+            List<String> content = temp.fileContent;
 
             int size = content.size();
             int j = 0;
@@ -110,13 +113,13 @@ public class ImgFileListActivity extends Activity implements OnItemClickListener
                 FileTraversal a1 = new FileTraversal();
 
                 if (j != 0) {
-                    a1.filename = name + "(" + j + ")";
+                    a1.fileName = name + "(" + j + ")";
                 } else {
-                    a1.filename = name;
+                    a1.fileName = name;
                 }
 
                 for (int x = 0; (x < maxSize && x + (j * maxSize) < size); x++) {
-                    a1.filecontent.add(content.get(x + (j * maxSize)));
+                    a1.fileContent.add(content.get(x + (j * maxSize)));
                 }
                 list.add(a1);
                 j++;
@@ -129,7 +132,7 @@ public class ImgFileListActivity extends Activity implements OnItemClickListener
     public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
         Intent intent = new Intent(this, PictureActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putParcelable("data", localList.get(arg2));
+        bundle.putParcelable(FOLDER_PICTURE_PATH, localList.get(arg2));
         intent.putExtra(MAX_SIZE, listSize);
         intent.putExtras(bundle);
         startActivityForResult(intent, 100);

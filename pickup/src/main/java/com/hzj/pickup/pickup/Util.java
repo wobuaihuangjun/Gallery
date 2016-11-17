@@ -78,15 +78,15 @@ public class Util {
             for (int i = 0; i < str.length; i++) {
                 filename = str[i];
                 FileTraversal ftl = new FileTraversal();
-                ftl.filename = filename;
+                ftl.fileName = filename;
                 data.add(ftl);// 设置文件名
             }
 
             for (int i = 0; i < data.size(); i++) {
                 for (int j = 0; j < allImgList.size(); j++) {
-                    if (data.get(i).filename.equals(getFileInfo(allImgList
+                    if (data.get(i).fileName.equals(getFileInfo(allImgList
                             .get(j)))) {
-                        data.get(i).filecontent.add(allImgList.get(j));// 文件夹所有图片路径
+                        data.get(i).fileContent.add(allImgList.get(j));// 文件夹所有图片路径
                     }
                 }
             }

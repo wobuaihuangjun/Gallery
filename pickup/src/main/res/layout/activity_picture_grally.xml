@@ -16,7 +16,7 @@
             android:layout_height="50dp"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:text="选择图片"
+            android:text="Select Picture"
             android:textColor="#555555"
             android:textSize="22sp" />
 
@@ -27,7 +27,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
-            android:text="确定"
+            android:text="Sure"
             android:textColor="#ff9933"
             android:textSize="18sp"
             android:visibility="visible" />

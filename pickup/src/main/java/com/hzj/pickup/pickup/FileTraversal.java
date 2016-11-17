@@ -9,43 +9,42 @@ import java.util.List;
 
 /**
  * 文件类
- * 
- * @author huangzj
  *
+ * @author huangzj
  */
 @SuppressLint("ParcelCreator")
 public class FileTraversal implements Parcelable {
-	public String filename;//所属图片的文件名称
-	public List<String> filecontent = new ArrayList<String>();
 
-	@Override
-	public int describeContents() {
-		return 0;
-	}
+    public String fileName;//所属图片的文件名称
+    public ArrayList<String> fileContent = new ArrayList<>();
 
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(filename);
-		dest.writeList(filecontent);
-	}
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-	public static final Parcelable.Creator<FileTraversal> CREATOR = new Creator<FileTraversal>() {
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(fileName);
+        dest.writeList(fileContent);
+    }
 
-		@Override
-		public FileTraversal[] newArray(int size) {
-			return null;
-		}
+    public static final Parcelable.Creator<FileTraversal> CREATOR = new Creator<FileTraversal>() {
 
-		@SuppressWarnings("unchecked")
-		@Override
-		public FileTraversal createFromParcel(Parcel source) {
-			FileTraversal ft = new FileTraversal();
-			ft.filename = source.readString();
-			ft.filecontent = source.readArrayList(FileTraversal.class
-					.getClassLoader());
+        @Override
+        public FileTraversal[] newArray(int size) {
+            return null;
+        }
 
-			return ft;
-		}
+        @SuppressWarnings("unchecked")
+        @Override
+        public FileTraversal createFromParcel(Parcel source) {
+            FileTraversal fileTraversal = new FileTraversal();
+            fileTraversal.fileName = source.readString();
+            fileTraversal.fileContent = source.readArrayList(FileTraversal.class.getClassLoader());
 
-	};
+            return fileTraversal;
+        }
+
+    };
 }
