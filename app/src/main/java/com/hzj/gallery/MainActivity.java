@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
+    private static final int PICK_UP_INTENT = 100;
+
     ArrayList<String> dataList;
     SelectResultAdapter selectResultAdapter;
     GridView imgGridView;
@@ -32,7 +34,7 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent();
                 intent.putExtra(PictureFolderActivity.MAX_SIZE, 3);
                 intent.setClass(MainActivity.this, PictureFolderActivity.class);
-                startActivityForResult(intent, 100);
+                startActivityForResult(intent, PICK_UP_INTENT);
             }
         });
 
@@ -52,7 +54,7 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == Activity.RESULT_OK && requestCode == 100) {
+        if (resultCode == Activity.RESULT_OK && requestCode == PICK_UP_INTENT) {
             Bundle bundle = data.getExtras();
             if (bundle != null) {
                 ArrayList<String> temp = bundle.getStringArrayList(PictureActivity.SELECT_PICTURE_PATH);

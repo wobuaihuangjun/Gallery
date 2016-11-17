@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.hzj.pickup.ImageLoader;
 import com.hzj.pickup.R;
 import com.hzj.pickup.browse.BrowseImageActivity;
 
@@ -25,6 +26,8 @@ public class PictureActivity extends Activity {
     public static final String TAG = "PictureActivity";
 
     public static final String SELECT_PICTURE_PATH = "select_picture_path";
+
+    private static final int BROWSE_INTENT = 100;
 
     private FileTraversal fileTraversal;
     private PictureAdapter pictureAdapter;
@@ -82,8 +85,7 @@ public class PictureActivity extends Activity {
 
     @Override
     protected void onDestroy() {
-        // TODO Auto-generated method stub
-        // ImageLoader.getInstance().clearCache();
+        ImageLoader.getInstance().clearCache();
         super.onDestroy();
     }
 
@@ -118,12 +120,9 @@ public class PictureActivity extends Activity {
         // 图片url,一般从数据库中或网络中获取
         intent.putExtra(BrowseImageActivity.IMAGE_URLS, picturePath);
         intent.putExtra(BrowseImageActivity.IMAGE_INDEX, position);
-        startActivityForResult(intent, 100);
+        startActivityForResult(intent, BROWSE_INTENT);
     }
 
-    /**
-     * FIXME 只需要在这个方法把选中的文档目录以list的形式传过去即可
-     */
     public void sendFiles() {
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
@@ -137,7 +136,7 @@ public class PictureActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (RESULT_OK == resultCode && requestCode == 100) {
+        if (RESULT_OK == resultCode && requestCode == BROWSE_INTENT) {
             Bundle bundle = data.getExtras();
             if (bundle != null) {
                 int selectPosition = bundle.getInt(BrowseImageActivity.CURRENT_POSITION);

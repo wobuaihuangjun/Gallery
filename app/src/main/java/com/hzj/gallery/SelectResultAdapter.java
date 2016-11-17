@@ -12,51 +12,57 @@ import com.hzj.pickup.ImageLoader;
 import java.util.List;
 
 /**
- * 本地图库多选数据适配器
+ * 已选择图片适配器
  *
  * @author huangzj
  */
 public class SelectResultAdapter extends BaseAdapter {
 
-    private Context context;
+    private LayoutInflater inflater;
     private List<String> data;
 
     public SelectResultAdapter(Context context, List<String> data) {
-        this.context = context;
+        this.inflater = LayoutInflater.from(context);
         this.data = data;
     }
 
     @Override
     public int getCount() {
-        return data.size();
+        if (data != null) {
+            return data.size();
+        }
+        return 0;
     }
 
     @Override
-    public Object getItem(int arg0) {
-        return data.get(arg0);
+    public Object getItem(int position) {
+        if (data != null) {
+            return data.get(position);
+        }
+        return null;
     }
 
     @Override
-    public long getItemId(int arg0) {
-        return arg0;
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup arg2) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         Holder holder;
-        if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.picture_item, null);
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.picture_item, parent, false);
             holder = new Holder();
-            holder.imageView = (ImageView) view.findViewById(R.id.imageView);
-            view.setTag(holder);
+            holder.imageView = (ImageView) convertView.findViewById(R.id.imageView);
+            convertView.setTag(holder);
         } else {
-            holder = (Holder) view.getTag();
+            holder = (Holder) convertView.getTag();
         }
 
         String path = data.get(position);
         ImageLoader.getInstance(3, ImageLoader.Type.LIFO).loadImage(path, holder.imageView);
 
-        return view;
+        return convertView;
     }
 
     private static class Holder {
